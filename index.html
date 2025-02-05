@@ -18,27 +18,40 @@
     <main>
         <section class="best-movie">
             <h2>Meilleur Film</h2>
-            <div class="best-movie-container"></div>
-        </section>
-        <section class="category">
-            <h2>Action</h2>
-            <div></div>
-        </section>
-        <section class="category">
-            <h2>Comedy</h2>
-            <div></div>
-        </section>
-        <section class="category">
-            <h2>Horror</h2>
-            <div></div>
-        </section>
-        <section class="category">
-            <div>
-                <h2>Autres :</h2>
+            <div class="best-movie-container">
+                <img src="" alt="" class="best-movie-img" />
+                <div class="best-movie-text">
+                    <h3 class="best-movie-title"></h3>
+                    <p class="best-movie-description"></p>
+                </div>
+                <button class="best-movie-button">Détails</button>
             </div>
-            <div></div>
+        </section>
+        <section class="films-category">
+            <h2></h2>
+            <div class="films-container 1"></div>
+        </section>
+        <section class="films-category">
+            <h2></h2>
+            <div class="films-container 2"></div>
+        </section>
+        <section class="films-category">
+            <div class="films-category-selection">
+                <h2>Autres :</h2>
+                <ul class="films-category-list"></ul>
+            </div>
+            <div class="films-container 3"></div>
         </section>
     </main>
+    <template id="card-film-template"> <!-- category card film's template for JS -->
+        <div class="card-film">
+            <img src="" alt="" class="card-film-img" />
+            <div>
+                <h3 class="card-film-title"></h3>
+                <button class="card-film-button">Détails</button>
+            </div>
+        </div>
+    </template>
     <script src="./script.js"></script>
   </body>
 </html>
