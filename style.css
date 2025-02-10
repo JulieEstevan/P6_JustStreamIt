@@ -41,3 +41,35 @@ h2 {
     font-weight: 600;
     margin: 30px 0px;
 }
+
+.best-movie-container {
+    position: relative;
+    display: flex;
+    gap: 35px;
+    padding: 10px 20px;
+    border: 6px solid black;
+}
+.best-movie-img {
+    width: 230px;
+}
+.best-movie-title {
+    font-size: 48px;
+    font-weight: 600;
+}
+.best-movie-description {
+    font-size: 28px;
+    font-weight: 200;
+}
+.best-movie-button {
+    position: absolute;
+    bottom: 10%;
+    right: 5%;
+    border: none;
+    border-radius: 25px;
+    padding: 16px 50px;
+    font-size: 24px;
+    font-weight: 500;
+    color: white;
+    background-color: #FA0B0B;
+    ;
+}

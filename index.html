@@ -1,57 +1,60 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <title>JustStreamIt</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <header>
-        <h1 class="header-title">JustStreamIt</h1>
-        <img src="./logo.png" alt="logo JustStreamIt" class="header-logo"/>
-        <p class="header-text">Vidéos à la demande</p>
-    </header>
-    <main>
-        <section class="best-movie">
-            <h2>Meilleur Film</h2>
-            <div class="best-movie-container">
-                <img src="" alt="" class="best-movie-img" />
-                <div class="best-movie-text">
-                    <h3 class="best-movie-title"></h3>
-                    <p class="best-movie-description"></p>
+        <title>JustStreamIt</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+        <script type="module" src="./script.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <h1 class="header-title">JustStreamIt</h1>
+            <img src="./logo.png" alt="logo JustStreamIt" class="header-logo"/>
+            <p class="header-text">Vidéos à la demande</p>
+        </header>
+        <main>
+            <div id="test"></div>
+            <section class="best-movie">
+                <h2>Meilleur Film</h2>
+                <div class="best-movie-container">
+                    <div>
+                        <img src="" alt="" class="best-movie-img" />
+                    </div>
+                    <div class="best-movie-text">
+                        <h3 class="best-movie-title"></h3>
+                        <p class="best-movie-description"></p>
+                    </div>
+                    <button class="best-movie-button">Détails</button>
                 </div>
-                <button class="best-movie-button">Détails</button>
+            </section>
+            <section class="films-category 1">
+                <h2></h2>
+                <div class="films-container"></div>
+            </section>
+            <section class="films-category 2">
+                <h2></h2>
+                <div class="films-container"></div>
+            </section>
+            <section class="films-category 3">
+                <div class="films-category-selection">
+                    <h2>Autres :</h2>
+                    <select class="films-category-list"></select>
+                </div>
+                <div class="films-container 3"></div>
+            </section>
+        </main>
+        <template id="card-film-template"> <!-- category card film's template for JS -->
+            <div class="card-film">
+                <img src="" alt="" class="card-film-img" />
+                <div>
+                    <h3 class="card-film-title"></h3>
+                    <button class="card-film-button">Détails</button>
+                </div>
             </div>
-        </section>
-        <section class="films-category">
-            <h2></h2>
-            <div class="films-container 1"></div>
-        </section>
-        <section class="films-category">
-            <h2></h2>
-            <div class="films-container 2"></div>
-        </section>
-        <section class="films-category">
-            <div class="films-category-selection">
-                <h2>Autres :</h2>
-                <ul class="films-category-list"></ul>
-            </div>
-            <div class="films-container 3"></div>
-        </section>
-    </main>
-    <template id="card-film-template"> <!-- category card film's template for JS -->
-        <div class="card-film">
-            <img src="" alt="" class="card-film-img" />
-            <div>
-                <h3 class="card-film-title"></h3>
-                <button class="card-film-button">Détails</button>
-            </div>
-        </div>
-    </template>
-    <script src="./script.js"></script>
-  </body>
+        </template>
+    </body>
 </html>
