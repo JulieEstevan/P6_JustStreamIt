@@ -15,6 +15,14 @@ body {
     }
 }
 
+button, select, option {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
 header {
     display: flex;
     flex-direction: row;
@@ -72,4 +80,67 @@ h2 {
     color: white;
     background-color: #FA0B0B;
     ;
+}
+
+.movies-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+}
+.card-movie {
+    position: relative;
+}
+.card-movie-img{
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    z-index: 0;
+}
+.card-movie-info {
+    width: 100%;
+    position: absolute;
+    top: 15%;
+    z-index: 1;
+    background-color: rgb(0 0 0 / 50%);
+}
+.card-movie-title {
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+    padding: 15px 0 15px 20px;
+}
+.card-movie-button {
+    position: relative;
+    left: 60%;
+    padding: 2px 25px;
+    margin: 0 0 12px 0;
+    border-radius: 25px;
+    border: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: white;
+    background-color: #2D2C2C;
+    ;
+}
+
+.movies-category-selection {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.movies-category-list {
+    width: 400px;
+    height: 78px;
+    border: 1px black solid;
+    font-size: 36px;
+    font-weight: 600;
+    padding: 0 15px;
+    appearance: none;
+    background-image: url("./images/arrow-up.png");
+    background-repeat: no-repeat;
+    background-position: right 30px top 55%;
+}
+.movies-category-list:focus {
+    background-image: url("./images/arrow-down.png");
 }

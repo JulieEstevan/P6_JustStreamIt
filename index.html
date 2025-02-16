@@ -13,13 +13,13 @@
     <body>
         <header>
             <h1 class="header-title">JustStreamIt</h1>
-            <img src="./logo.png" alt="logo JustStreamIt" class="header-logo"/>
+            <img src="./images/logo.png" alt="logo JustStreamIt" class="header-logo"/>
             <p class="header-text">Vidéos à la demande</p>
         </header>
         <main>
             <div id="test"></div>
             <section class="best-movie">
-                <h2>Meilleur Film</h2>
+                <h2>Meilleur movie</h2>
                 <div class="best-movie-container">
                     <div>
                         <img src="" alt="" class="best-movie-img" />
@@ -31,30 +31,43 @@
                     <button class="best-movie-button">Détails</button>
                 </div>
             </section>
-            <section class="films-category 1">
-                <h2></h2>
-                <div class="films-container"></div>
+            <section class="movies-category">
+                <h2 id="first-category">Drama</h2>
+                <div class="first movies-container"></div>
             </section>
-            <section class="films-category 2">
-                <h2></h2>
-                <div class="films-container"></div>
+            <section class="movies-category">
+                <h2 id="second-category">Comedy</h2>
+                <div class="second movies-container"></div>
             </section>
-            <section class="films-category 3">
-                <div class="films-category-selection">
+            <section class="movies-category">
+                <div class="movies-category-selection">
                     <h2>Autres :</h2>
-                    <select class="films-category-list"></select>
+                    <select class="movies-category-list"></select>
                 </div>
-                <div class="films-container 3"></div>
+                <div class="selected movies-container"></div>
             </section>
         </main>
-        <template id="card-film-template"> <!-- category card film's template for JS -->
-            <div class="card-film">
-                <img src="" alt="" class="card-film-img" />
-                <div>
-                    <h3 class="card-film-title"></h3>
-                    <button class="card-film-button">Détails</button>
+        <template id="card-movie-template"> <!-- category card movie's template for JS -->
+            <div class="card-movie">
+                <img src="" alt="" class="card-movie-img" />
+                <div class="card-movie-info">
+                    <h3 class="card-movie-title"></h3>
+                    <button class="card-movie-button">Détails</button>
                 </div>
             </div>
         </template>
+        <dialog class="modal-movie">
+            <div>
+                <div>
+                    <h3 class="modal-movie-title"></h3>
+                    <p class="modal-movie-info"></p>
+                    <p class="modal-movie-directors"></p>
+                </div>
+                <img src="" alt="" class="modal-movie-img" />
+            </div>
+            <p class="modal-movie-description"></p>
+            <p class="modal-movie-actors"></p>
+            <button class="modal-movie-button"></button>
+        </dialog>
     </body>
 </html>
