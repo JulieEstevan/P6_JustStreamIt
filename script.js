@@ -50,24 +50,31 @@ const displayModal = (button) => {
         const movieId = button.id
         const movieById = await fetchMovieById(movieId)
         modalMovieTitle.innerHTML = movieById.title
-        modalMovieInfo.innerHTML = `${movieById.year} - ${(movieById.genres).join(", ")} <br/>
-                                    ${movieById.rated} - ${movieById.duration} minutes (${(movieById.countries).join(" / ")}) <br/>
-                                    IMDB score: ${movieById.imdb_score}/10`
-        modalMovieDirectors.innerHTML = `Réalisé par: <br/> ${(movieById.directors).join(", ")}`
+        modalMovieInfo.innerHTML = `<span>${movieById.year} - ${(movieById.genres).join(", ")} <br/>
+                                    ${movieById.rated} - ${movieById.duration} minutes 
+                                    (${(movieById.countries).join(" / ")}) <br/>
+                                    IMDB score: ${movieById.imdb_score}/10<span/>`
+        modalMovieDirectors.innerHTML = `<span class="modal-movie-directors-1">Réalisé par:</span> 
+                                        <br/><span>${(movieById.directors).join(", ")}</span>`
         modalMovieImage.src = movieById.image_url
         modalMovieImage.addEventListener("error", () => {
             modalMovieImage.src = "https://media.istockphoto.com/id/1472933890/vector/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-moment-placeholder.jpg?s=612x612&w=0&k=20&c=Rdn-lecwAj8ciQEccm0Ep2RX50FCuUJOaEM8qQjiLL0="
         })
         modalMovieDescription.innerHTML = movieById.description
-        modalMovieActors.innerHTML = `Avec: <br/> ${(movieById.actors).join(", ")}`
+        modalMovieActors.innerHTML = `Avec: <span class="modal-movie-actors-1"><br/> ${(movieById.actors).join(", ")}</span>`
         modalMovieCloseButton.innerHTML = "Fermer"
         if (window.screen.width <= 780) {
-            modalMovieCloseButton.innerHTML = "X"
+            modalMovieCloseButton.innerHTML = "❌"
+            modalMovie.insertBefore(modalMovieDescription, modalMovieImage)
         }
         modalMovie.showModal()
+        if (modalMovie.hasAttribute("open")) {
+            body.style.position = "fixed"
+        }
     })
     modalMovieCloseButton.addEventListener("click", () => {
         modalMovie.close()
+        body.style.position = "relative"
     })
     body.addEventListener("click", (event) => {
         if (event.target === modalMovie) {
@@ -120,7 +127,41 @@ const displayBestMoviesByGenre = async (genre, container) => {
     })
 }
 
-const displayMoviesByCategory = () => {
+const seeMoreSeeLessHandler = (container, movieCards) => {
+    const seeMoreButton = document.createElement("button")
+    seeMoreButton.className = "movie-container-button"
+    seeMoreButton.innerHTML = "Voir plus"
+    const seeLessButton = document.createElement("button")
+    seeLessButton.className = "movie-container-button"
+    seeLessButton.innerHTML = "Voir moins"
+    if (window.screen.width <= 780) {
+        let movieCardsToHide = [movieCards[4], movieCards[5]]
+        if (window.screen.width <= 450) {
+            movieCardsToHide = [movieCards[2], movieCards[3], movieCards[4], movieCards[5]]
+        }
+        movieCardsToHide.forEach(movieCard => {
+            movieCard.setAttribute("class", "hidden")
+        })
+
+        container.appendChild(seeMoreButton)
+        seeMoreButton.addEventListener("click", () => {
+            movieCardsToHide.forEach(movieCard => {
+                movieCard.setAttribute("class", "card-movie")
+            })
+            seeMoreButton.remove()
+            container.appendChild(seeLessButton)
+        })
+        seeLessButton.addEventListener("click", () => {
+            movieCardsToHide.forEach(movieCard => {
+                movieCard.setAttribute("class", "hidden")
+            })
+            seeLessButton.remove()
+            container.appendChild(seeMoreButton)
+        })
+    }
+}
+
+const displayMoviesByCategory = async () => {
     const firstCategoryGenre = document.querySelector("#first-category").innerHTML
     const firstCategoryContainer = document.querySelector(".first")
     const secondCategoryGenre = document.querySelector("#second-category").innerHTML
@@ -128,16 +169,24 @@ const displayMoviesByCategory = () => {
     const selectGenre = document.querySelector("select")
     let selectOutput = selectGenre.options[selectGenre.selectedIndex].textContent
     let selectCategoryGenre = selectOutput
-    const selectedCategoryContainer = document.querySelector(".selected")
-    displayBestMoviesByGenre(firstCategoryGenre, firstCategoryContainer)
-    displayBestMoviesByGenre(secondCategoryGenre, secondCategoryContainer)
-    displayBestMoviesByGenre(selectCategoryGenre, selectedCategoryContainer)
-    selectGenre.addEventListener("change", () => {
+    let selectedCategoryContainer = document.querySelector(".selected")
+    await displayBestMoviesByGenre(firstCategoryGenre, firstCategoryContainer)
+    await displayBestMoviesByGenre(secondCategoryGenre, secondCategoryContainer)
+    await displayBestMoviesByGenre(selectCategoryGenre, selectedCategoryContainer)
+    const firstCategoryMovieCards = firstCategoryContainer.querySelectorAll(".card-movie")
+    const secondCategoryMovieCards = secondCategoryContainer.querySelectorAll(".card-movie")
+    let selectedCategoryMovieCards = selectedCategoryContainer.querySelectorAll(".card-movie")
+    selectGenre.addEventListener("change", async () => {
         let selectOutput = selectGenre.options[selectGenre.selectedIndex].textContent
         let selectCategoryGenre = selectOutput
         selectedCategoryContainer.replaceChildren("")
-        displayBestMoviesByGenre(selectCategoryGenre, selectedCategoryContainer)
+        await displayBestMoviesByGenre(selectCategoryGenre, selectedCategoryContainer)
         selectGenre.blur()
+        selectedCategoryMovieCards = selectedCategoryContainer.querySelectorAll(".card-movie")
+        seeMoreSeeLessHandler(selectedCategoryContainer, selectedCategoryMovieCards)
     })
+    seeMoreSeeLessHandler(firstCategoryContainer, firstCategoryMovieCards)
+    seeMoreSeeLessHandler(secondCategoryContainer, secondCategoryMovieCards)
+    seeMoreSeeLessHandler(selectedCategoryContainer, selectedCategoryMovieCards)
 }
 displayMoviesByCategory()
