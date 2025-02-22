@@ -57,8 +57,10 @@ const displayModal = (button) => {
         modalMovieDirectors.innerHTML = `<span class="modal-movie-directors-1">Réalisé par:</span> 
                                         <br/><span>${(movieById.directors).join(", ")}</span>`
         modalMovieImage.src = movieById.image_url
+        modalMovieImage.alt = movieById.title
         modalMovieImage.addEventListener("error", () => {
             modalMovieImage.src = "https://media.istockphoto.com/id/1472933890/vector/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-moment-placeholder.jpg?s=612x612&w=0&k=20&c=Rdn-lecwAj8ciQEccm0Ep2RX50FCuUJOaEM8qQjiLL0="
+            modalMovieImage.alt = "Movie image not available"
         })
         modalMovieDescription.innerHTML = movieById.description
         modalMovieActors.innerHTML = `Avec: <span class="modal-movie-actors-1"><br/> ${(movieById.actors).join(", ")}</span>`
@@ -86,6 +88,7 @@ const displayModal = (button) => {
 const displayBestMovie = () => {
     const bestMovieImg = document.querySelector(".best-movie-img")
     bestMovieImg.src = bestMovie.image_url
+    bestMovieImg.alt = bestMovie.title
     const bestMovieTitle = document.querySelector(".best-movie-title")
     bestMovieTitle.innerHTML = bestMovie.title
     const bestMovieDescription = document.querySelector(".best-movie-description")
@@ -115,8 +118,10 @@ const displayBestMoviesByGenre = async (genre, container) => {
         const movieCard = cloneMovieCard.querySelector(".card-movie")
         const movieCardImg = movieCard.querySelector(".card-movie-img")
         movieCardImg.src = movie.image_url
+        movieCardImg.alt = movie.title
         movieCardImg.addEventListener("error", () => {
             movieCardImg.src = "https://media.istockphoto.com/id/1472933890/vector/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-moment-placeholder.jpg?s=612x612&w=0&k=20&c=Rdn-lecwAj8ciQEccm0Ep2RX50FCuUJOaEM8qQjiLL0="
+            movieCardImg.alt = "Movie image not available"
         })
         const movieCardTitle = movieCard.querySelector(".card-movie-title")
         movieCardTitle.innerHTML = movie.title
