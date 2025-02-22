@@ -38,7 +38,7 @@ const fetchMovieById = async (movieId) => {
 
 const displayModal = (button) => { 
     const body = document.querySelector("body")
-    const modalMovie = document.querySelector(".modal-movie")
+    const modalMovie = document.querySelector(".modal")
     const modalMovieTitle = document.querySelector(".modal-movie-title")
     const modalMovieInfo = document.querySelector(".modal-movie-info")
     const modalMovieDirectors = document.querySelector(".modal-movie-directors")
@@ -46,7 +46,8 @@ const displayModal = (button) => {
     const modalMovieDescription = document.querySelector(".modal-movie-description")
     const modalMovieActors = document.querySelector(".modal-movie-actors")
     const modalMovieCloseButton = document.querySelector(".modal-movie-button")
-    button.addEventListener("click", async () => {
+    button.addEventListener("click", async (event) => {
+        event.stopPropagation()
         const movieId = button.id
         const movieById = await fetchMovieById(movieId)
         modalMovieTitle.innerHTML = movieById.title
@@ -78,9 +79,11 @@ const displayModal = (button) => {
         modalMovie.close()
         body.style.position = "relative"
     })
+    const modal = document.querySelector(".modal-movie")
     body.addEventListener("click", (event) => {
-        if (event.target === modalMovie) {
+        if (event.target === modalMovie && event.target !== modal) {
             modalMovie.close()
+            body.style.position = "relative"
         }
     })
 }
